@@ -58,7 +58,7 @@
         Register
     </button>
 
-    <a href="login.php" class="btn btn-primary w-100">
+    <a href="/EMPLOYEE_M_SYSTEM/public/?page=login" class="btn btn-primary w-100">
         Login
     </a>
 

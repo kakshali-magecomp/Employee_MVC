@@ -9,7 +9,7 @@
 
 <div class="container mt-5">
 
-    <form class="card p-4 mx-auto w-50" method="POST">
+    <form class="card p-4 mx-auto w-50" method="POST" >
         
         <h3 class="text-center mb-3">Admin Login</h3>
 
@@ -23,9 +23,13 @@
             <input type="password" name="password" class="form-control" required>
         </div>
 
-        <button class="btn btn-primary w-100" type="submit">
+        <a href="/EMPLOYEE_M_SYSTEM/public/?page=dashboard"><button class="btn btn-primary w-100 mb-2" type="submit">
             Login
-        </button>
+        </button></a>
+
+        <a href="/EMPLOYEE_M_SYSTEM/public/?page=register" class="btn btn-primary w-100">
+        Register
+    </a>
 
     </form>
 

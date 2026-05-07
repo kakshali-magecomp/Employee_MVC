@@ -12,7 +12,7 @@ class EmployeeController {
     public function register(): void
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            require_once __DIR__ . '/../views/employee/Register.php';
+            require_once __DIR__ . '/../view/employee/Register.php';
             exit();
         }
         $name     = trim($_POST['name'] ?? '');
@@ -35,8 +35,13 @@ class EmployeeController {
 
         if ($success) {
             echo "<script>alert('Registration Successfully.');</script>";
+            header("Location: /EMPLOYEE_M_SYSTEM/public/?page=dashboard");
+            exit();
+
         } else {
             echo "<script>alert('Registration failed. Try again.');</script>";
+            header("Location: /EMPLOYEE_M_SYSTEM/public/?page=register");
+            exit();
         }
     }
     public function LoginView(): void
@@ -46,26 +51,39 @@ class EmployeeController {
 
     public function Login(): void
     {
+        session_start();
+
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            require_once __DIR__ . '/../views/employee/Login.php';
+            require_once __DIR__ . '/../view/employee/Login.php';
             exit();
         }
 
-        $email    = trim($_POST['email'] ?? '');
+        $email = trim($_POST['email'] ?? '');
         $password = trim($_POST['password'] ?? '');
 
-        if(!$email || !$password){
-            echo "<script>alert('email and password Required');</script>";
+        if (!$email || !$password) {
+            echo "<script>alert('Email and Password Required');</script>";
             exit();
         }
 
-        $Employeelogin = new Employeelogin(); 
-        $success = $Employeelogin->findByEmail($email);
+        // $hashed = password_hash($password, PASSWORD_DEFAULT);
+        $Employeelogin = new Employeelogin();
+        // $success = $Employeelogin->login($Employee_id);  
+        $user = $Employeelogin->findByEmail($email);
 
-        if ($success) {
-            echo "<script>alert('Login Successfully.');</script>";
+        if ($user && password_verify($password, $user['password'])) {
+
+            $_SESSION['user'] = $user;
+            echo "<script>alert('Login Successfully');</script>";
+            header("Location: /EMPLOYEE_M_SYSTEM/public/?page=dashboard");
+            exit();
+
         } else {
-            echo "<script>alert('Login failed. Try again.');</script>";
+
+            echo "<script>alert('Invalid email or password');</script>";
+            header("Location: /EMPLOYEE_M_SYSTEM/public/?page=login");
+            exit();
         }
     }
+    
 }
