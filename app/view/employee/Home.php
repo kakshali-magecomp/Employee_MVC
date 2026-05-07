@@ -19,6 +19,9 @@
             <th>Attendance Status</th>
         </tr>
         <tbody>
+            <tr>
+                <td></td>
+            </tr>
         </tbody>
     </table>
 

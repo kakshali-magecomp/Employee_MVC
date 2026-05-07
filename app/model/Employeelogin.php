@@ -33,4 +33,7 @@ class Employeelogin
 
         return $success;
     }
+    public function login($email, $hashed){
+        $sql = "SELECT email , password FROM Employee";
+    }
 }

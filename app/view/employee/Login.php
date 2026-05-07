@@ -9,7 +9,7 @@
 
 <div class="container mt-5">
 
-    <form class="card p-4 mx-auto w-50" method="POST" action="../controller/EmployeeController.php">
+    <form class="card p-4 mx-auto w-50" method="POST">
         
         <h3 class="text-center mb-3">Admin Login</h3>
 

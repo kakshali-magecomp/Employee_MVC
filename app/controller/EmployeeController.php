@@ -39,4 +39,8 @@ class EmployeeController {
             echo "<script>alert('Registration failed. Try again.');</script>";
         }
     }
+    public function LoginView(): void
+    {
+        require __DIR__ . '/../view/employee/Login.php';
+    }
 }
