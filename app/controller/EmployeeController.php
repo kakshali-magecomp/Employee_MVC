@@ -9,7 +9,7 @@ class EmployeeController {
         require __DIR__ . '/../view/employee/Register.php';
     }
 
-    public function register()
+    public function register(): void
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             require_once __DIR__ . '/../views/employee/Register.php';
@@ -42,5 +42,30 @@ class EmployeeController {
     public function LoginView(): void
     {
         require __DIR__ . '/../view/employee/Login.php';
+    }
+
+    public function Login(): void
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            require_once __DIR__ . '/../views/employee/Login.php';
+            exit();
+        }
+
+        $email    = trim($_POST['email'] ?? '');
+        $password = trim($_POST['password'] ?? '');
+
+        if(!$email || !$password){
+            echo "<script>alert('email and password Required');</script>";
+            exit();
+        }
+
+        $Employeelogin = new Employeelogin(); 
+        $success = $Employeelogin->findByEmail($email);
+
+        if ($success) {
+            echo "<script>alert('Login Successfully.');</script>";
+        } else {
+            echo "<script>alert('Login failed. Try again.');</script>";
+        }
     }
 }

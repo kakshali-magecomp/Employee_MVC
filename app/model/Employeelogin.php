@@ -33,7 +33,16 @@ class Employeelogin
 
         return $success;
     }
-    public function login($email, $hashed){
-        $sql = "SELECT email , password FROM Employee";
+    public function emailExists($email)
+    {
+        $sql = "SELECT id FROM Employee WHERE email = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $exists = $result->num_rows > 0;
+        $stmt->close();
+        return $exists;
     }
+
 }
