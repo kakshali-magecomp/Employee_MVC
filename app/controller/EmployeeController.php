@@ -70,6 +70,7 @@ class EmployeeController {
         $Employeelogin = new Employeelogin();
         // $success = $Employeelogin->login($Employee_id);  
         $user = $Employeelogin->findByEmail($email);
+        $emp = $Employeelogin->getEmployeeByEmail($email);
 
         if ($user && password_verify($password, $user['password'])) {
 
@@ -82,6 +83,13 @@ class EmployeeController {
 
             echo "<script>alert('Invalid email or password');</script>";
             header("Location: /EMPLOYEE_M_SYSTEM/public/?page=login");
+            exit();
+        }
+
+        if($emp){
+            $_SESSION['emp'] = $user;
+            echo "<script>alert('Login Successfully');</script>";
+            header("Location: /EMPLOYEE_M_SYSTEM/public/?page=dashboard");
             exit();
         }
     }

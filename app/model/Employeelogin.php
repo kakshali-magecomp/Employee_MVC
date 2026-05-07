@@ -42,11 +42,7 @@ class Employeelogin
         $stmt->close();
         return $person;
     }
-    // public function login($Employee_id)
-    // {
-    //     $sql = "SELECT * FROM Employee WHERE id = ? LIMIT 1";
-
-    // }
+    
     public function getEmployee()
     {
         $sql = "SELECT * FROM Employee";
@@ -58,17 +54,17 @@ class Employeelogin
         }
         return $employee;
     }
-
-    public function getEmployeeBy()
+    public function getEmployeeByEmail($email)
     {
-        $sql = "SELECT * FROM Employee WHERE email = ? ";
-        $result = $this->conn->query($sql);
-        $employee = [];
-
-        while ($row = $result->fetch_assoc()) {
-            $employee[] = $row;
-        }
-        return $employee;
+        $sql = "SELECT * FROM Employee WHERE email = ? LIMIT 1";
+        $stmt = $this->conn->prepare($sql);
+        if(!$stmt) die("Prepare failed: " . $this->conn->error);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $person = $result->fetch_assoc();
+        $stmt->close();
+        return $person;
 
     }
 

@@ -10,10 +10,5 @@ class DashboardController {
         $employee = $Employeelogin->getEmployee();
         require __DIR__ . '/../view/admin/dashboard.php';
     }
-    // public function dashboardViewEmployee(): void
-    // {
-    //      $Employeelogin = new Employeelogin();
-    //     $employee = $Employeelogin->getEmployee();
-    //     require __DIR__ . '/../view/employee/dashboard.php';
-    // }
+    
 }

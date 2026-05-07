@@ -5,9 +5,13 @@ ini_set('display_errors', 1);
 
 require_once __DIR__ . '/../app/controller/EmployeeController.php';
 require_once __DIR__ . '/../app/controller/DashboardController.php';
+require_once __DIR__ . '/../app/controller/EmployeeDeshController.php';
+
 
 $auth = new EmployeeController();
 $dashboard = new DashboardController();
+$empdashboard = new EmployeeDeshController();
+
 
 $page = $_GET['page'] ?? 'register';
 
@@ -36,8 +40,13 @@ switch ($page) {
     case 'dashboard':
 
         $dashboard->dashboardView();
-
         break;
+    
+    case 'empdashbord':
+
+        $empdashboard->dashboardView();
+        break;
+        
 
     default:
         echo "404 Page Not Found";

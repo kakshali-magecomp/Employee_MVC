@@ -13,7 +13,7 @@
 
     <table class="table table-bordered">
 
-        <thead class="table-dark">
+        <thead class="table-primary">
 
             <tr>
                 <th>Employee ID</th>
@@ -38,9 +38,14 @@
             <?php endforeach; ?>
         </tbody>
     </table>
-<a href="/EMPLOYEE_M_SYSTEM/public/?page=login" class="btn btn-primary w-50">
+    <div class="d-flex p-2 justify-content-between">
+    <a href="/EMPLOYEE_M_SYSTEM/public/?page=login" class="btn btn-primary w-40 mr-5">
         Logout
     </a>
+    <a href="#" class="btn btn-primary w-40">
+        Punching
+    </a>
+    </div>
 </div>
 
 </body>
