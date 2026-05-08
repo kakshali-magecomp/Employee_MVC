@@ -35,7 +35,7 @@
         <div class="bg-white rounded-3xl  p-8">
 
             <h2 class="text-gray-500 text-lg">
-                Total Employees
+                Total Pepole
             </h2>
             <p class="text-5xl font-bold text-indigo-600 mt-4">
                 <?= $totalEmployees ?>

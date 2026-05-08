@@ -232,9 +232,9 @@ class Attendance
 
     
 
-    public function updateAttendance($id)
+    public function updateAttendance($id,  $employee_id, $attendance_date, $punch_in, $punch_out, $working_hours, $late_time, $status)
     {
-        $sql = "UPDATE attendance SET punch_in = ?, punch_out = ?, total_hours = ?, status = ? WHERE id = ?";
+        $sql = "UPDATE attendance SET employee_id = ?, attendance_date = ?, punch_in = ?, punch_out = ?, working_hours = ?, overtime_hours = ?, late_time = ?, status = ? WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
 
         if (!$stmt)
@@ -242,17 +242,15 @@ class Attendance
             die("Prepare Failed : " . $this->conn->error);
         }
 
-        $stmt->bind_param("ssssi", $punchIn, $punchOut, $totalHours, $status, $id);
+        $stmt->bind_param("i", $employee_id, $attendance_date, $punch_in, $punch_out, $working_hours, $late_time, $status, $id);
         $success = $stmt->execute();
         $stmt->close();
         return $success;
     }
 
-    
-
     public function deleteAttendance($id)
     {
-        $sql = "DELETE Employee, attendance FROM Employee JOIN attendance ON Employee.id = attendance.employee_id WHERE Employee.id = ?;";
+        $sql = "DELETE Employee, attendance FROM Employee JOIN attendance ON Employee.id = attendance.employee_id WHERE attendance.id = ?;";
         $stmt = $this->conn->prepare($sql);
 
         if (!$stmt)
@@ -265,7 +263,6 @@ class Attendance
         $stmt->close();
         return $success;
     }
-
 
     public function getAllAttendancebtn()
     {

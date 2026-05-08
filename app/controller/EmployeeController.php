@@ -18,7 +18,6 @@ class EmployeeController
 
             exit();
         }
-
         
         $name = trim($_POST['name'] ?? '');
         $email = trim($_POST['email'] ?? '');
@@ -26,14 +25,13 @@ class EmployeeController
         $mobile = trim($_POST['mobile'] ?? '');
         $role = trim($_POST['role'] ?? '');
         $status = trim($_POST['status'] ?? '');
-
         $profile_image = "";
 
         if (!empty($_FILES['profile_image']['name']))
         {
             $profile_image = time() . '_' . $_FILES['profile_image']['name'];
-            move_uploaded_file( $_FILES['profile_image']['tmp_name'], 
-            __DIR__ . '/../../public/uploads/'.$profile_image);
+            move_uploaded_file( $_FILES['profile_image']['name'], 
+            __DIR__ . 'EMPLOYEE_M_SYSTEM/public/uploads/'.$profile_image);
         }
 
         if (!$name || !$email || !$password || !$mobile || !$role || !$status)
@@ -43,11 +41,19 @@ class EmployeeController
             exit();
         }
 
-        
         $hashedPassword = password_hash($password,PASSWORD_DEFAULT);
         $employeeModel = new Employeelogin();
-        $success = $employeeModel->register($name,$email,$hashedPassword,$mobile,$profile_image,$role,$status);
+        $empvalid = $employeeModel->findByEmail($email);
 
+        if ($empvalid['email'])
+        {
+            $_SESSION['employee'] = $empvalid ;
+            echo "<script>alert('Employee alredy exist');</script>";
+            header("Refresh:1; url=index.php?page=register");
+            exit();
+        }
+
+        $success = $employeeModel->register($name,$email,$hashedPassword,$mobile,$profile_image,$role,$status);
         if ($success)
         {
             echo "<script>alert('Registration Successful');</script>";

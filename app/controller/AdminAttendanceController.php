@@ -19,7 +19,11 @@ class AdminAttendanceController
         }
         $attendanceModel = new Attendance();
         $attendance = $attendanceModel->deleteAttendance($id);
-        require __DIR__ . '/../view/admin/dashboard.php';
+        if($attendance){
+            echo "<script>alert('Record Deleted');</script>";
+            header("Refresh:1; url=index.php?page=dashboard");
+            exit();
+        }
     }
     public function edit()
     {
