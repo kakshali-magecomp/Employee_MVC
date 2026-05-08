@@ -18,7 +18,7 @@ class EmployeeController
 
             exit();
         }
-        
+
         $name = trim($_POST['name'] ?? '');
         $email = trim($_POST['email'] ?? '');
         $password = trim($_POST['password'] ?? '');
@@ -30,8 +30,8 @@ class EmployeeController
         if (!empty($_FILES['profile_image']['name']))
         {
             $profile_image = time() . '_' . $_FILES['profile_image']['name'];
-            move_uploaded_file( $_FILES['profile_image']['name'], 
-            __DIR__ . 'EMPLOYEE_M_SYSTEM/public/uploads/'.$profile_image);
+            move_uploaded_file( $_FILES['profile_image']['temp_name'], 
+            __DIR__ . '../public/uploads/'.$profile_image);
         }
 
         if (!$name || !$email || !$password || !$mobile || !$role || !$status)

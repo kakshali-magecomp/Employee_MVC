@@ -83,8 +83,7 @@
             </button>
 
             <a href="index.php?page=dashboard" class="bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-2xl font-semibold flex items-center justify-center transition">
-                Reset
-            </a>
+                Reset</a>
 
         </form>
     </div>
