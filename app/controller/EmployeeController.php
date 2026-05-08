@@ -27,13 +27,13 @@ class EmployeeController
         $role = trim($_POST['role'] ?? '');
         $status = trim($_POST['status'] ?? '');
 
-        $profileImage = '';
+        $profile_image = "";
 
         if (!empty($_FILES['profile_image']['name']))
         {
-            $profileImage = time() . '_' . $_FILES['profile_image']['name'];
-            move_uploaded_file( $_FILES['profile_image']['tmp_name'],
-             __DIR__ . '/../../public/uploads/' . $profileImage);
+            $profile_image = time() . '_' . $_FILES['profile_image']['name'];
+            move_uploaded_file( $_FILES['profile_image']['tmp_name'], 
+            __DIR__ . '/../../public/uploads/'.$profile_image);
         }
 
         if (!$name || !$email || !$password || !$mobile || !$role || !$status)
@@ -46,7 +46,7 @@ class EmployeeController
         
         $hashedPassword = password_hash($password,PASSWORD_DEFAULT);
         $employeeModel = new Employeelogin();
-        $success = $employeeModel->register($name,$email,$hashedPassword,$mobile,$profileImage,$role,$status);
+        $success = $employeeModel->register($name,$email,$hashedPassword,$mobile,$profile_image,$role,$status);
 
         if ($success)
         {

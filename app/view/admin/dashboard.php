@@ -10,6 +10,7 @@
 <nav class="bg-indigo-700 ">
     <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
         <div>
+            
             <h1 class="text-3xl font-bold text-white">
                 Admin Dashboard
             </h1>
@@ -62,7 +63,7 @@
         </div>
     </div>
 
-    <div class="bg-white rounded-3xl  p-8 mb-10">
+    <!-- <div class="bg-white rounded-3xl  p-8 mb-10">
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-2xl font-bold text-gray-700">
                 Search Attendance
@@ -86,13 +87,13 @@
             </a>
 
         </form>
-    </div>
+    </div> -->
 
    
     <div class="bg-white rounded-3xl  overflow-hidden mb-10">
         <div class="p-6 border-b border-gray-200">
             <h2 class="text-2xl font-bold text-gray-700">
-                All Employees
+                All Employees and Admins
             </h2>
         </div>
         <div class="overflow-x-auto">

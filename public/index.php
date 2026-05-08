@@ -120,6 +120,19 @@ switch ($page)
 
     break;
 
+    case 'editattendance':
+
+        if (!isset($_SESSION['admin']))
+        {
+            header("Location: index.php?page=login");
+
+            exit;
+        }
+
+        $adminAttendanceController->edit();
+
+    break;
+
     case 'logout':
 
         session_unset();

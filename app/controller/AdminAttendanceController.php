@@ -12,15 +12,56 @@ class AdminAttendanceController
     }
     public function delete()
     {
-         if (!isset($_SESSION['deleteattendance']))
+        $id = $_GET['id'] ?? null;
+        if (!$id)
         {
-            header("Location: index.php?page=dashboard");
-            exit;
+            die("Invalid Attendance ID");
         }
-
-        $employeeId = $_SESSION['deleteattendance']['id'];
         $attendanceModel = new Attendance();
-        $result = $attendanceModel->deleteAttendance($employeeId);
+        $attendance = $attendanceModel->deleteAttendance($id);
         require __DIR__ . '/../view/admin/dashboard.php';
     }
+    public function edit()
+    {
+        $id = $_GET['id'] ?? null;
+        if (!$id)
+        {
+            die("Invalid Attendance ID");
+        }
+        $attendanceModel = new Attendance();
+        $attendance = $attendanceModel->getAttendanceById($id);
+        // $updateattendance = $attendance ->updateAttendance($id);
+        require __DIR__ . '/../view/admin/editemployee.php';
+    
+    //     if ($_SERVER['REQUEST_METHOD'] !== 'POST')
+    //     {
+    //         require __DIR__ . '/../view/admin/dashboard.php';
+    //         exit();
+    //     }
+    //     $id = trim($_POST['id'] ?? '');
+    //     $full_name = trim($_POST['full_name'] ?? '');
+    //     $attendance_date = trim($_POST['attendance_date'] ?? '');
+    //     $punch_in = trim($_POST['punch_in'] ?? '');
+    //     $punch_out = trim($_POST['punch_out'] ?? '');
+    //     $working_hours = trim($_POST['working_hours'] ?? '');
+    //     $late_time = trim($_POST['late_time'] ?? '');
+    //     $status = trim($_POST['status'] ?? '');
+    
+    //     $attendanceModel = new Attendance();
+    //     $attendance = $attendanceModel->getAttendanceById($id);
+
+    //     if($attendance)
+    //     {
+    //         $_SESSION['admin'] = $attendance;
+    //         echo "<script>alert('Employee Record Edit Successful');</script>";
+    //         header("Refresh:1; url=index.php?page=dashboard");
+    //         exit(); 
+    //     }
+
+    //     $updateattendance = $attendance->updateAttendance($id, $full_name, $attendance_date, $punch_in, $punch_out, $working_hours, $late_time, $status);
+    //     echo "<script>alert('Invalid');</script>";
+    //     header("Refresh:1; url=index.php?page=editemployee");
+    //     exit();
+    
+     }
 }

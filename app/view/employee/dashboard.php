@@ -47,7 +47,7 @@ $status = $todayAttendance['status'] ?? 'Absent';
             </div>
             <div>
                 <?php if(!empty($employee['profile_image'])): ?>
-                    <img src="/public/upload/<?= $employee['profile_image'] ?>" class="w-32 h-32 rounded-full object-cover border-4 border-indigo-500 shadow-lg">
+                    <img src="../public/uploads/<?= $employee['profile_image'] ?>" class="w-32 h-32 rounded-full object-cover border-4 border-indigo-500 shadow-lg"> 
                 <?php else: ?>
                     <div class="w-32 h-32 rounded-full bg-indigo-200 flex items-center justify-center text-4xl font-bold text-indigo-700">
                         <?= strtoupper(substr($employee['full_name'],0,1)) ?>
@@ -58,7 +58,7 @@ $status = $todayAttendance['status'] ?? 'Absent';
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <div class="bg-white   p-6">
+        <div class="bg-white p-6">
             <h3 class="text-gray-500 text-lg">
                 Punch In
             </h3>

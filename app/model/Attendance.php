@@ -232,7 +232,7 @@ class Attendance
 
     
 
-    public function updateAttendance($id, $punchIn, $punchOut, $totalHours, $status)
+    public function updateAttendance($id)
     {
         $sql = "UPDATE attendance SET punch_in = ?, punch_out = ?, total_hours = ?, status = ? WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
@@ -252,7 +252,7 @@ class Attendance
 
     public function deleteAttendance($id)
     {
-        $sql = "DELETE FROM Employee WHERE id = ?";
+        $sql = "DELETE Employee, attendance FROM Employee JOIN attendance ON Employee.id = attendance.employee_id WHERE Employee.id = ?;";
         $stmt = $this->conn->prepare($sql);
 
         if (!$stmt)
@@ -281,5 +281,6 @@ class Attendance
         }
         return $data;
     }
+    
 
 }
