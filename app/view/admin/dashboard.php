@@ -44,7 +44,7 @@
 
         <div class="bg-white rounded-3xl  p-8">
             <h2 class="text-gray-500 text-lg">
-                Attendance Records
+                Employee Attendance Records
             </h2>
             <p class="text-5xl font-bold text-green-500 mt-4">
                 <?= $totalAttendance ?>
@@ -54,7 +54,7 @@
         <div class="bg-white rounded-3xl  p-8">
 
             <h2 class="text-gray-500 text-lg">
-                Present Today
+                Employee Present Today
             </h2>
 
             <p class="text-5xl font-bold text-yellow-500 mt-4">
@@ -63,7 +63,7 @@
         </div>
     </div>
 
-    <!-- <div class="bg-white rounded-3xl  p-8 mb-10">
+    <div class="bg-white rounded-3xl  p-8 mb-10">
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-2xl font-bold text-gray-700">
                 Search Attendance
@@ -87,7 +87,7 @@
             </a>
 
         </form>
-    </div> -->
+    </div>
 
    
     <div class="bg-white rounded-3xl  overflow-hidden mb-10">
