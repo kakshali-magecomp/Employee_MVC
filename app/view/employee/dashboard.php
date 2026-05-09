@@ -1,7 +1,7 @@
 <?php
 $punchIn = $todayAttendance['punch_in'] ?? null;
 $punchOut = $todayAttendance['punch_out'] ?? null;
-$totalHours = $todayAttendance['total_hours'] ?? '0 hrs';
+$working_hours = $todayAttendance['working_hours'] ?? '0 hrs';
 $status = $todayAttendance['status'] ?? 'Absent';
 ?>
 <!DOCTYPE html>
@@ -16,12 +16,14 @@ $status = $todayAttendance['status'] ?? 'Absent';
         <h1 class="text-2xl font-bold text-white">
             Employee Dashboard
         </h1>
+        <div class="flex justify-between items-center gap-2">
         <a href="index.php?page=logout" class="bg-red-500 hover:bg-red-600 text-white px-5 py-2 rounded-xl transition">
             Logout
         </a>
         <a href="index.php?page=editemployee&id=<?= $employee['id'] ?>" class="bg-red-500 hover:bg-red-600 text-white px-5 py-2 rounded-xl transition">
             Edit profile
         </a>
+        <div>
     </div>
 </nav>
 

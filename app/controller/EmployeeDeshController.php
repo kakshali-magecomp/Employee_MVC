@@ -51,7 +51,7 @@ class EmployeeDeshController
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST')
         {
-            header("Location: index.php?page=empdashboard");
+            header("Location: index.php?page=editprofile");
             exit();
         }    
 

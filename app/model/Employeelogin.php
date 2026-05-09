@@ -99,7 +99,7 @@ class Employeelogin
     // }
 
 
-    public function updateemployee($id, $full_name, $email, $hashedPassword, $mobile, $profile_image, $role,)
+    public function updateemployee($id, $full_name, $email, $hashedPassword, $mobile, $profile_image, $role)
     {
         $sql = "UPDATE Employee SET full_name = ?, email = ?, password = ?, mobile = ?, profile_image = ?, role = ? WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
