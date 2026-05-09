@@ -14,15 +14,15 @@ class EmployeeDeshController
         }
 
         $sessionEmployee = $_SESSION['employee'];
-        $email = $sessionEmployee['email'] ?? null;
+        $id = $sessionEmployee['id'] ?? null;
 
-        if (!$email)
+        if (!$id)
         {
             die("Employee email not found in session");
         }
 
         $employeeModel = new Employeelogin();
-        $employee = $employeeModel->getEmployeeByEmail($email);
+        $employee = $employeeModel->getemployeeById($id);
 
         if (!$employee)
         {

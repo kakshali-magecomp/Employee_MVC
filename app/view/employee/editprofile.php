@@ -46,7 +46,7 @@
 
                 <div class="mb-6">
                     <label class="block text-gray-700 font-semibold mb-2">profile Image</label>
-                    <input type="file" name="profile_image" value="<?= $employee['profile_image']; ?>" class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    <input type="file" name="profile_image" value="<?= $employee['profile_image']; ?>" class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400" require>
                 </div>
 
                 <div class="mb-8">

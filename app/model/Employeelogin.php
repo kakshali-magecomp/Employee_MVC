@@ -54,6 +54,7 @@ class Employeelogin
         }
         return $employee;
     }
+    
     public function getEmployeeByEmail($email)
     {
         $sql = "SELECT * FROM Employee WHERE email = ? LIMIT 1";
@@ -81,23 +82,6 @@ class Employeelogin
         return $employee;
 
     }
-
-    // public function updateemployee($id, $full_name, $email, $hashedPassword, $mobile, $profile_image, $role)
-    // {
-    //     $sql = "UPDATE Employee SET  full_name = ?, email = ?, password = ?, mobile = ?, profile_image = ?, role = ?, status = ? WHERE id = ?";
-    //     $stmt = $this->conn->prepare($sql);
-    //     if (!$stmt)
-    //     {
-    //         die("Prepare Failed : " . $this->conn->error);
-    //     }
-    //     $stmt->bind_param("isssssss",$id, $full_name, $email, $hashedPassword, $mobile, $profile_image, $role, $status);
-    //     $employee = $stmt->execute();
-    //     $stmt->close();
-    //     return $employee;
-
-
-    // }
-
 
     public function updateemployee($id, $full_name, $email, $hashedPassword, $mobile, $profile_image, $role)
     {
