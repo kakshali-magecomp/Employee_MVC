@@ -15,7 +15,32 @@
             </h2>
         </div>
 
-<div class="overflow-x-auto">
+        <div class="bg-white rounded-3xl  p-8 ">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-bold text-gray-700">
+                Search Attendance
+            </h2>
+        </div>
+
+        <form method="GET" class="grid grid-cols-1 md:grid-cols-4 gap-5">
+
+            <input type="hidden" name="page" value="dashboard">
+
+            <input type="date" name="date" class="border border-gray-300 p-4 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500">
+
+            <input type="text" name="employee" placeholder="Search Employee Name" class="border border-gray-300 p-4 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500">
+
+            <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl font-semibold transition">
+                Search
+            </button>
+
+            <a href="index.php?page=attendance" class="bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-2xl font-semibold flex items-center justify-center transition">
+                Reset</a>
+
+        </form>
+    </div>
+
+<div class="overflow-x-auto ">
 <table class="w-full">
     <tr class="bg-indigo-600 text-white">
         <th  class="p-5 text-left">ID</th>

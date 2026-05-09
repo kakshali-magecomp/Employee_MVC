@@ -25,6 +25,7 @@
             <form action="index.php?page=updateattendance" method="POST">
 
                 <input type="hidden" name="id" value="<?= $attendance['id']; ?>">
+                <input type="hidden" name="employee_id" value="<?= $attendance['employee_id']; ?>">
 
                 <div class="mb-6">
                     <label class="block text-gray-700 font-semibold mb-2">Employee Name</label>

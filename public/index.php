@@ -67,6 +67,32 @@ switch ($page)
 
     break;
 
+    case 'editemployee':
+
+        if (!isset($_SESSION['employee']))
+        {
+            header("Location: index.php?page=login");
+
+            exit;
+        }
+
+        $employeeDashboardController->editemployee();
+
+    break;
+
+    case 'updateemployee':
+
+        if (!isset($_SESSION['employee']))
+        {
+            header("Location: index.php?page=login");
+
+            exit;
+        }
+
+        $employeeDashboardController->updateemployee();
+
+    break;
+
     case 'punchin':
 
         if (!isset($_SESSION['employee']))
@@ -130,6 +156,19 @@ switch ($page)
         }
 
         $adminAttendanceController->edit();
+
+    break;
+
+    case 'updateattendance':
+
+        if (!isset($_SESSION['admin']))
+        {
+            header("Location: index.php?page=login");
+
+            exit;
+        }
+
+        $adminAttendanceController->update();
 
     break;
 

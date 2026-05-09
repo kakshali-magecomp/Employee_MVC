@@ -34,38 +34,42 @@ class AdminAttendanceController
         }
         $attendanceModel = new Attendance();
         $attendance = $attendanceModel->getAttendanceById($id);
-        // $updateattendance = $attendance ->updateAttendance($id);
-        require __DIR__ . '/../view/admin/editemployee.php';
-    
-    //     if ($_SERVER['REQUEST_METHOD'] !== 'POST')
-    //     {
-    //         require __DIR__ . '/../view/admin/dashboard.php';
-    //         exit();
-    //     }
-    //     $id = trim($_POST['id'] ?? '');
-    //     $full_name = trim($_POST['full_name'] ?? '');
-    //     $attendance_date = trim($_POST['attendance_date'] ?? '');
-    //     $punch_in = trim($_POST['punch_in'] ?? '');
-    //     $punch_out = trim($_POST['punch_out'] ?? '');
-    //     $working_hours = trim($_POST['working_hours'] ?? '');
-    //     $late_time = trim($_POST['late_time'] ?? '');
-    //     $status = trim($_POST['status'] ?? '');
-    
-    //     $attendanceModel = new Attendance();
-    //     $attendance = $attendanceModel->getAttendanceById($id);
-
-    //     if($attendance)
-    //     {
-    //         $_SESSION['admin'] = $attendance;
-    //         echo "<script>alert('Employee Record Edit Successful');</script>";
-    //         header("Refresh:1; url=index.php?page=dashboard");
-    //         exit(); 
-    //     }
-
-    //     $updateattendance = $attendance->updateAttendance($id, $full_name, $attendance_date, $punch_in, $punch_out, $working_hours, $late_time, $status);
-    //     echo "<script>alert('Invalid');</script>";
-    //     header("Refresh:1; url=index.php?page=editemployee");
-    //     exit();
-    
+        require __DIR__ . '/../view/admin/editemployee.php';  
      }
+
+     public function update()
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST')
+        {
+            header("Location: index.php?page=editemployee");
+            exit();
+        }    
+
+        $id = trim($_POST['id'] ?? '');
+        $employee_id = trim($_POST['employee_id'] ?? '');
+        $attendance_date = trim($_POST['attendance_date'] ?? '');
+        $punch_in = trim($_POST['punch_in'] ?? '');
+        $punch_out = trim($_POST['punch_out'] ?? '');
+        $working_hours = trim($_POST['working_hours'] ?? '');
+        $late_time = trim($_POST['late_time'] ?? '');
+        $status = trim($_POST['status'] ?? '');
+        if ( empty($id) || empty($attendance_date) || empty($status))
+        {
+            echo "<script>alert('Required Fields Missing');</script>";
+            header("Refresh:1; url=index.php?page=editemployee");
+            exit();
+        }
+        $attendanceModel = new Attendance();
+        $update = $attendanceModel->updateAttendance($id, $employee_id, $attendance_date, $punch_in, $punch_out, $working_hours, $late_time, $status);
+        if ($update)
+        {
+            echo "<script>alert('Attendance Updated Successfully');</script>";
+            header("Refresh:1; url=index.php?page=dashboard");
+            exit();
+        }
+        echo "<script>alert('Update Failed');</script>";
+        header("Refresh:1; url=index.php?page=editemployee");
+        exit();
+    
+    }
 }

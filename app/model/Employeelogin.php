@@ -68,4 +68,52 @@ class Employeelogin
 
     }
 
+    public function getemployeeById($id)
+    {
+        $sql = "SELECT * FROM Employee WHERE id = ? LIMIT 1";
+        $stmt = $this->conn->prepare($sql);
+        if(!$stmt) die("Prepare failed: " . $this->conn->error);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $employee = $result->fetch_assoc();
+        $stmt->close();
+        return $employee;
+
+    }
+
+    // public function updateemployee($id, $full_name, $email, $hashedPassword, $mobile, $profile_image, $role)
+    // {
+    //     $sql = "UPDATE Employee SET  full_name = ?, email = ?, password = ?, mobile = ?, profile_image = ?, role = ?, status = ? WHERE id = ?";
+    //     $stmt = $this->conn->prepare($sql);
+    //     if (!$stmt)
+    //     {
+    //         die("Prepare Failed : " . $this->conn->error);
+    //     }
+    //     $stmt->bind_param("isssssss",$id, $full_name, $email, $hashedPassword, $mobile, $profile_image, $role, $status);
+    //     $employee = $stmt->execute();
+    //     $stmt->close();
+    //     return $employee;
+
+
+    // }
+
+
+    public function updateemployee($id, $full_name, $email, $hashedPassword, $mobile, $profile_image, $role,)
+    {
+        $sql = "UPDATE Employee SET full_name = ?, email = ?, password = ?, mobile = ?, profile_image = ?, role = ? WHERE id = ?";
+        $stmt = $this->conn->prepare($sql);
+        if (!$stmt)
+        {
+            die("Prepare Failed : " . $this->conn->error);
+        }
+        $stmt->bind_param("ssssssi", $full_name, $email, $hashedPassword, $mobile, $profile_image, $role, $id);
+        $employee = $stmt->execute();
+        if (!$employee)
+        {
+            die("Execute Failed : " . $stmt->error);
+        }
+        $stmt->close();
+        return $employee;
+    }
 }

@@ -214,14 +214,12 @@ class Attendance
 
     public function getAttendanceById($id)
     {
-        $sql = "SELECT * FROM attendance WHERE id = ?";
+        $sql = "SELECT attendance.*, Employee.full_name FROM attendance JOIN Employee ON attendance.employee_id = Employee.id WHERE attendance.id = ?";
         $stmt = $this->conn->prepare($sql);
-
         if (!$stmt)
         {
             die("Prepare Failed : " . $this->conn->error);
         }
-
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -229,23 +227,41 @@ class Attendance
         $stmt->close();
         return $attendance;
     }
-
     
-
-    public function updateAttendance($id,  $employee_id, $attendance_date, $punch_in, $punch_out, $working_hours, $late_time, $status)
+    public function updateAttendance($id, $employee_id, $attendance_date, $punch_in, $punch_out, $working_hours, $late_time, $status)
     {
-        $sql = "UPDATE attendance SET employee_id = ?, attendance_date = ?, punch_in = ?, punch_out = ?, working_hours = ?, overtime_hours = ?, late_time = ?, status = ? WHERE id = ?";
-        $stmt = $this->conn->prepare($sql);
+        $formattedPunchIn = null;
+        $formattedPunchOut = null;
+        if (!empty($punch_in))
+        {
+            $formattedPunchIn = $attendance_date . " " . $punch_in . ":00";
+        }
 
+        if (!empty($punch_out))
+        {
+            $formattedPunchOut = $attendance_date . " " . $punch_out . ":00";
+        }
+
+        if ($formattedPunchIn && $formattedPunchOut)
+        {
+            $start = strtotime($formattedPunchIn);
+            $end = strtotime($formattedPunchOut);
+            $totalSeconds = $end - $start;
+            $hours = floor($totalSeconds / 3600);
+            $minutes = floor(($totalSeconds % 3600) / 60);
+            $working_hours = $hours . " hrs " . $minutes . " mins";
+        }
+        $sql = "UPDATE attendance SET  attendance_date = ?, punch_in = ?, punch_out = ?, working_hours = ?, late_time = ?, status = ? WHERE id = ?";
+        $stmt = $this->conn->prepare($sql);
         if (!$stmt)
         {
             die("Prepare Failed : " . $this->conn->error);
         }
-
-        $stmt->bind_param("i", $employee_id, $attendance_date, $punch_in, $punch_out, $working_hours, $late_time, $status, $id);
-        $success = $stmt->execute();
+        $stmt->bind_param( "ssssssi", $attendance_date, $formattedPunchIn, $formattedPunchOut, $working_hours, $late_time, $status, $id);
+        $attendance = $stmt->execute();
         $stmt->close();
-        return $success;
+        return $attendance;
+
     }
 
     public function deleteAttendance($id)

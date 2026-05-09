@@ -19,6 +19,9 @@ $status = $todayAttendance['status'] ?? 'Absent';
         <a href="index.php?page=logout" class="bg-red-500 hover:bg-red-600 text-white px-5 py-2 rounded-xl transition">
             Logout
         </a>
+        <a href="index.php?page=editemployee&id=<?= $employee['id'] ?>" class="bg-red-500 hover:bg-red-600 text-white px-5 py-2 rounded-xl transition">
+            Edit profile
+        </a>
     </div>
 </nav>
 
@@ -82,7 +85,7 @@ $status = $todayAttendance['status'] ?? 'Absent';
                 Working Hours
             </h3>
             <p class="text-3xl font-bold text-indigo-600 mt-3">
-                <?= $totalHours ?>
+                <?= $working_hours ?>
             </p>
         </div>
 
