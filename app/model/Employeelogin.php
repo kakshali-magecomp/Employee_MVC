@@ -83,15 +83,15 @@ class Employeelogin
 
     }
 
-    public function updateemployee($id, $full_name, $email, $hashedPassword, $mobile, $profile_image, $role)
+    public function updateemployee($id, $full_name, $email, $hashedPassword, $mobile, $profile_image, $role, $status)
     {
-        $sql = "UPDATE Employee SET full_name = ?, email = ?, password = ?, mobile = ?, profile_image = ?, role = ? WHERE id = ?";
+        $sql = "UPDATE Employee SET full_name = ?, email = ?, password = ?, mobile = ?, profile_image = ?, role = ?, status = ? WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
         if (!$stmt)
         {
             die("Prepare Failed : " . $this->conn->error);
         }
-        $stmt->bind_param("ssssssi", $full_name, $email, $hashedPassword, $mobile, $profile_image, $role, $id);
+        $stmt->bind_param("sssssssi", $full_name, $email, $hashedPassword, $mobile, $profile_image, $role, $status, $id);
         $employee = $stmt->execute();
         if (!$employee)
         {

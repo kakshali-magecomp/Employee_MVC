@@ -18,7 +18,7 @@ $status = $todayAttendance['status'] ?? 'Absent';
         </h1>
         <div class="flex justify-between items-center gap-2">
         <a href="index.php?page=logout" class="bg-red-500 hover:bg-red-600 text-white px-5 py-2 rounded-xl transition">
-            Logout
+            Logout 
         </a>
         <a href="index.php?page=editemployee&id=<?= $employee['id'] ?>" class="bg-red-500 hover:bg-red-600 text-white px-5 py-2 rounded-xl transition">
             Edit profile
@@ -52,13 +52,13 @@ $status = $todayAttendance['status'] ?? 'Absent';
             </div>
             <div>
                 <?php if(!empty($employee['profile_image'])): ?>
-                    <img src="../public/uploads/<?= $employee['profile_image'] ?>" class="w-32 h-32 rounded-full object-cover border-4 border-indigo-500 shadow-lg"> 
+                    <img src="../public/uploads/<?= $employee['profile_image'] ?>"class="w-32 h-32 rounded-full object-cover border-4 border-indigo-500 shadow-lg">
                 <?php else: ?>
-                    <div class="w-32 h-32 rounded-full bg-indigo-200 flex items-center justify-center text-4xl font-bold text-indigo-700">
-                        <?= strtoupper(substr($employee['full_name'],0,1)) ?>
-                    </div>
-                <?php endif; ?>
-            </div>
+                <div class="w-32 h-32 rounded-full bg-indigo-200 flex items-center justify-center text-4xl font-bold text-indigo-700">
+                    <?= strtoupper(substr($employee['full_name'],0,1)) ?>
+                </div>
+    <?php endif; ?>
+</div>
         </div>
     </div>
 

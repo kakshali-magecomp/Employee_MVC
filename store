@@ -30,12 +30,11 @@ class EmployeeController
         $status = trim($_POST['status'] ?? '');
         $profile_image = "";
 
-        if (!empty($_FILES['profile_image']['name'])) {
-
+        if (!empty($_FILES['profile_image']['name']))
+        {
             $profile_image = time() . '_' . $_FILES['profile_image']['name'];
-            $tmp = $_FILES['profile_image']['tmp_name'];
-            $uploadPath = __DIR__ . '/../public/uploads/' . $profile_image;
-            move_uploaded_file($tmp, $uploadPath);
+            move_uploaded_file( $_FILES['profile_image']['temp_name'], 
+            __DIR__ . '../public/uploads/'.$profile_image);
         }
 
         if (!$name || !$email || !$password || !$mobile || !$role || !$status)
@@ -85,7 +84,7 @@ class EmployeeController
             exit();
         }
 
-        $id = trim($_POST['id'] ?? '');
+        $userId = $_GET['id'] ?? null;
         $email = trim($_POST['email'] ?? '');
         $password = trim($_POST['password'] ?? '');
 
@@ -95,11 +94,15 @@ class EmployeeController
             header("Refresh:1; url=index.php?page=login");
             exit();
         }
-        // 
+        // $employeeId = $userId['id'];
+        // $ipAddress = $_SERVER['REMOTE_ADDR']; 
+        // $deviceInfo = $_SERVER['HTTP_USER_AGENT'];
+        // $loginModel = new LoginActivityModel();
+        // $loginModel->storeLogin($employeeId, $ipAddress, $deviceInfo);
         $employeeModel = new Employeelogin();
-        $user = $employeeModel->findByEmail($email);
         $employeeLoginModel = new LoginActivityModel();
-        // $employee = $employeeLoginModel ->getemployeeById($id);
+        $user = $employeeModel->findByEmail($email);
+        $employee = $employeeLoginModel ->getemployeeById($id);
         // $login = $employeeLoginModel->storeLogin($employeeId, $ipAddress, $deviceInfo);
         // $emp = $employeeModel -> insertEmployee($email);
 
@@ -126,8 +129,8 @@ class EmployeeController
 
         if ($user['role'] === 'admin')
         {
-            $_SESSION['admin'] = $user;
-            // $_SESSION['employee'] = $employee['id'];
+            $_SESSION['admin'] = $user['id'];
+            $_SESSION['employee'] = $employee['id'];
             $employeeId = $user['id']; // use this directly
             $ipAddress = getClientIp();
             $deviceInfo = getDeviceInfo();
@@ -140,6 +143,7 @@ class EmployeeController
         if ($user['role'] === 'employee')
         {
             $_SESSION['employee'] = $user;
+            $_SESSION['employee'] = $employee['id'];
             $employeeId = $user['id']; // use this directly
             $ipAddress = getClientIp();
             $deviceInfo = getDeviceInfo();
@@ -148,6 +152,15 @@ class EmployeeController
             header("Refresh:1; url=index.php?page=empdashboard");
             exit();
         }
+        // if($user){
+
+        //     $_SESSION['id'] = $employee['id']; // MUST exist
+        //     $employeeId = $employee['id']; // use this directly
+        //     $ipAddress = getClientIp();
+        //     $deviceInfo = getDeviceInfo();
+
+        //     $this->loginActivityModel->storeLogin($employeeId, $ipAddress, $deviceInfo);
+        // }
 
         echo "<script>alert('Invalid Role');</script>";
         header("Refresh:1; url=index.php?page=login");

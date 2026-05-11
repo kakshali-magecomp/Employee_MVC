@@ -61,16 +61,17 @@ class EmployeeDeshController
         $password = trim($_POST['password'] ?? '');
         $mobile = trim($_POST['mobile'] ?? '');
         $role = trim($_POST['role'] ?? '');
+        $status = trim($_POST['status'] ?? '');
         $profile_image = "";
 
-        if (!empty($_FILES['profile_image']['name']))
-        {
+        if (!empty($_FILES['profile_image']['name'])) {
             $profile_image = time() . '_' . $_FILES['profile_image']['name'];
-            move_uploaded_file( $_FILES['profile_image']['temp_name'], 
-            __DIR__ . '../public/uploads/'.$profile_image);
+            $tmp = $_FILES['profile_image']['tmp_name'];
+            $uploadPath = __DIR__ . '/../public/uploads/' . $profile_image;
+            move_uploaded_file($tmp, $uploadPath);
         }
 
-        if ( empty($id) || empty($full_name) || empty($email) || empty($password) || empty($mobile) || empty($role) )
+        if ( empty($id) || empty($full_name) || empty($email) || empty($password) || empty($mobile) || empty($role) || empty($status) )
         {
             echo "<script>alert('Required Fields Missing');</script>";
             header("Refresh:1; url=index.php?page=editprofile");
@@ -79,7 +80,7 @@ class EmployeeDeshController
 
         $hashedPassword = password_hash($password,PASSWORD_DEFAULT);
         $employee = new Employeelogin();
-        $update = $employee->updateemployee($id, $full_name, $email, $hashedPassword, $mobile, $profile_image, $role);
+        $update = $employee->updateemployee($id, $full_name, $email, $hashedPassword, $mobile, $profile_image, $role,$status);
         if ($update)
         {
             echo "<script>alert('Profile Updated Successfully');</script>";

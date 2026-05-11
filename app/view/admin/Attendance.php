@@ -26,22 +26,22 @@
 
             <input type="hidden" name="page" value="dashboard">
 
-            <input type="date" name="date" class="border border-gray-300 p-4 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <input type="date" name="date" id="searchDate" class="border border-gray-300 p-4 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500">
 
-            <input type="text" name="employee" placeholder="Search Employee Name" class="border border-gray-300 p-4 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <input type="text" name="employee" id="searchEmployee" placeholder="Search Employee Name" class="border border-gray-300 p-4 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500">
 
-            <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl font-semibold transition">
+            <!-- <button type="button" class="bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl font-semibold transition">
                 Search
-            </button>
+            </button> -->
 
-            <a href="index.php?page=attendance" class="bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-2xl font-semibold flex items-center justify-center transition">
+            <a href="index.php?page=attendance" class="bg-indigo-600  text-white rounded-2xl font-semibold flex items-center justify-center transition">
                 Reset</a>
 
         </form>
     </div>
 
 <div class="overflow-x-auto ">
-<table class="w-full">
+<table class="w-full" id="attendanceTable">
     <tr class="bg-indigo-600 text-white">
         <th  class="p-5 text-left">ID</th>
         <th  class="p-5 text-left">Employee Name</th>
@@ -50,10 +50,9 @@
         <th  class="p-5 text-left">Punch In</th>
         <th  class="p-5 text-left">Punch Out</th>
         <th  class="p-5 text-left">Working Hours</th>
-        <!-- <th  class="p-5 text-left">Late Time</th> -->
         <th  class="p-5 text-left">Status</th>
     </tr>
-
+<tbody id="attendanceBody">
     <?php foreach ($attendanceData as $row): ?>
 
     <tr class="border-b hover:bg-gray-50 transition" >
@@ -94,6 +93,7 @@
         </td>
     </tr>
     <?php endforeach; ?>
+<tbody>
 </table>
             
 </div>
@@ -103,5 +103,6 @@
 <a href="index.php?page=dashboard"class="bg-white text-indigo-700 px-5 py-3 rounded-xl font-semibold hover:bg-gray-200 transition mt-[10px] ">
                 Back</a>    
 </div>  
+<script src="../public/search.js"></script>
 </body>
 </html>

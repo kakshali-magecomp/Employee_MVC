@@ -68,6 +68,10 @@
                             <?= ($attendance['status'] == 'Absent') ? 'selected' : ''; ?>>
                             Absent
                         </option>
+                        <option value="Late"
+                            <?= ($attendance['status'] == 'Late') ? 'selected' : ''; ?>>
+                            Late
+                        </option>
                     </select>
                 </div>
 

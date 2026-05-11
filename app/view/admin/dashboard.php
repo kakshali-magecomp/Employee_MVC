@@ -63,7 +63,7 @@
         </div>
     </div>
 
-    <div class="bg-white rounded-3xl  p-8 mb-10">
+    <!-- <div class="bg-white rounded-3xl  p-8 mb-10">
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-2xl font-bold text-gray-700">
                 Search Attendance
@@ -78,7 +78,7 @@
 
             <input type="text" name="employee" placeholder="Search Employee Name" class="border border-gray-300 p-4 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500">
 
-            <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl font-semibold transition">
+            <button type="button" class="bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl font-semibold transition">
                 Search
             </button>
 
@@ -86,7 +86,7 @@
                 Reset</a>
 
         </form>
-    </div>
+    </div> -->
 
    
     <div class="bg-white rounded-3xl  overflow-hidden mb-10">
@@ -232,6 +232,6 @@
         </div>
     </div>
 </div>
-
+<script src="../public/search.js"></script>
 </body>
 </html>

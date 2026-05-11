@@ -18,7 +18,7 @@
 
         <div class="p-8">
 
-            <form action="index.php?page=updateemployee" method="POST">
+            <form action="index.php?page=updateemployee" method="POST" enctype="multipart/form-data">
                 
                 <div class="mb-6">
                 <input type="text" name="id" value="<?= $employee['id']; ?>" class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400" readonly>
@@ -65,7 +65,16 @@
 
                 <div class="mb-6">
                     <label class="block text-gray-700 font-semibold mb-2">Status</label>
-                    <input type="text" name="status" value="<?= $employee['status'] ?? ''; ?>" class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400" readonly>
+                    <select name="status" class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                        <option value="active"
+                            <?= ($employee['status'] == 'active') ? 'selected' : ''; ?>>
+                            Active
+                        </option>
+                        <option value="inactive"
+                            <?= ($employee['status'] == 'inactive') ? 'selected' : ''; ?>>
+                            Inactive
+                        </option>
+                    </select>                
                 </div>
 
                 <div class="flex items-center gap-4">

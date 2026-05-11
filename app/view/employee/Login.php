@@ -9,9 +9,10 @@
 
 <div class="container mt-5">
 
-    <form class="card p-4 mx-auto w-50" method="POST" >
+    <form class="card p-4 mx-auto w-50" method="POST" action="index.php?page=login" >
         
         <h3 class="text-center mb-3">Admin Login</h3>
+        <!-- <input type="text" name="id" value="<?= $employee['id']; ?>" class="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400" readonly> -->
 
         <div class="mb-3">
             <label>Email</label>
@@ -24,8 +25,8 @@
         </div>
 
         <a href="/EMPLOYEE_M_SYSTEM/public/?page=dashboard"><button class="btn btn-primary w-100 mb-2" type="submit">
-            Login
-        </button></a>
+            Login   
+               </button></a>
 
         <a href="/EMPLOYEE_M_SYSTEM/public/?page=register" class="btn btn-primary w-100">
         Register

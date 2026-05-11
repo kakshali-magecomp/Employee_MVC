@@ -8,11 +8,13 @@ require_once __DIR__ . '/../app/controller/EmployeeDeshController.php';
 require_once __DIR__ . '/../app/controller/AttendanceController.php';
 require_once __DIR__ . '/../app/controller/AdminAttendanceController.php';
 
+
 $authController = new EmployeeController();
 $dashboardController = new DashboardController();
 $employeeDashboardController = new EmployeeDeshController();
 $attendanceController = new AttendanceController();
 $adminAttendanceController = new AdminAttendanceController();
+
 
 $page = $_GET['page'] ?? 'login';
 switch ($page)
