@@ -57,9 +57,9 @@ $status = $todayAttendance['status'] ?? 'Absent';
                 <div class="w-32 h-32 rounded-full bg-indigo-200 flex items-center justify-center text-4xl font-bold text-indigo-700">
                     <?= strtoupper(substr($employee['full_name'],0,1)) ?>
                 </div>
-    <?php endif; ?>
-</div>
-        </div>
+                <?php endif; ?>
+                </div>
+            </div>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">

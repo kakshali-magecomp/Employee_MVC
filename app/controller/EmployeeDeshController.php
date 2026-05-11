@@ -35,6 +35,7 @@ class EmployeeDeshController
         $monthlySummary = $attendanceModel->getMonthlySummary($employee['id']);
         require __DIR__ . '/../view/employee/dashboard.php';
     }
+
     public function editemployee()
     {
         $id = $_GET['id'] ?? null;
@@ -67,7 +68,7 @@ class EmployeeDeshController
         if (!empty($_FILES['profile_image']['name'])) {
             $profile_image = time() . '_' . $_FILES['profile_image']['name'];
             $tmp = $_FILES['profile_image']['tmp_name'];
-            $uploadPath = __DIR__ . '/../public/uploads/' . $profile_image;
+            $uploadPath = __DIR__ . '../public/uploads/' . $profile_image;
             move_uploaded_file($tmp, $uploadPath);
         }
 
@@ -81,6 +82,7 @@ class EmployeeDeshController
         $hashedPassword = password_hash($password,PASSWORD_DEFAULT);
         $employee = new Employeelogin();
         $update = $employee->updateemployee($id, $full_name, $email, $hashedPassword, $mobile, $profile_image, $role,$status);
+        
         if ($update)
         {
             echo "<script>alert('Profile Updated Successfully');</script>";
