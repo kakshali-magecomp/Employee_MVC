@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/../model/Employeelogin.php';
 require_once __DIR__ . '/../model/Loginactivity.php';
+require_once __DIR__ . '/../model/LoginActivityModel.php';
 require_once __DIR__ . '/../helpers/ip_helper.php';
 
 
@@ -31,13 +32,13 @@ class EmployeeController
 
         if (!empty($_FILES['profile_image']['name'])) {
 
-            $profile_image = time() . '_' . $_FILES['profile_image']['name'];
+            $profile_image = $_FILES['profile_image']['name'];
             $tmp = $_FILES['profile_image']['tmp_name'];
             $uploadPath = __DIR__ . '../public/uploads/' . $profile_image;
             move_uploaded_file($tmp, $uploadPath);
         }
 
-        if (!$name || !$email || !$password || !$mobile || !$role || !$status || $profile_image)
+        if (!$name || !$email || !$password || !$mobile || !$role || !$status || !$profile_image)
         {
             echo "<script>alert('All fields are required');</script>";
             header("Refresh:1; url=index.php?page=register");

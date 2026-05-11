@@ -30,10 +30,6 @@
 
             <input type="text" name="employee" id="searchEmployee" placeholder="Search Employee Name" class="border border-gray-300 p-4 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500">
 
-            <!-- <button type="button" class="bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl font-semibold transition">
-                Search
-            </button> -->
-
             <a href="index.php?page=attendance" class="bg-indigo-600  text-white rounded-2xl font-semibold flex items-center justify-center transition">
                 Reset</a>
 

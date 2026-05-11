@@ -66,7 +66,7 @@ class EmployeeDeshController
         $profile_image = "";
 
         if (!empty($_FILES['profile_image']['name'])) {
-            $profile_image = time() . '_' . $_FILES['profile_image']['name'];
+            $profile_image = $_FILES['profile_image']['name'];
             $tmp = $_FILES['profile_image']['tmp_name'];
             $uploadPath = __DIR__ . '../public/uploads/' . $profile_image;
             move_uploaded_file($tmp, $uploadPath);
